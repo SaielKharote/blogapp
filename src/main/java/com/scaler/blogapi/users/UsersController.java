@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController()
 @RequestMapping("/users")
@@ -25,8 +24,15 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    ResponseEntity<UserResponseDTO> loginUser(@RequestBody LoginUserDTO loginUserDTO) {
-        UserResponseDTO savedUser = usersService.loginUser(loginUserDTO);
+    ResponseEntity<UserResponseDTO> loginUser(
+            @RequestBody LoginUserDTO loginUserDTO,
+            @RequestParam (name = "token", defaultValue = "jwt") String token
+    ) {
+        var authType = UsersService.AuthType.JWT;
+        if (token.equals("auth_token")) {
+            authType = UsersService.AuthType.AUTH_TOKEN;
+        }
+        UserResponseDTO savedUser = usersService.loginUser(loginUserDTO, authType);
         return ResponseEntity.ok(savedUser);
     }
 

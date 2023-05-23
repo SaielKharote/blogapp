@@ -2,12 +2,12 @@ package com.scaler.blogapi.users;
 
 import com.scaler.blogapi.articles.ArticleEntity;
 import com.scaler.blogapi.commons.BaseEntity;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -22,6 +22,7 @@ public class UserEntity extends BaseEntity {
     String password;
     String bio;
     String image;
+    String roles;
 
     @ManyToMany(mappedBy = "likedBy")
     List<ArticleEntity> likedArticles;

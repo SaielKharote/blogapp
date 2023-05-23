@@ -2,8 +2,8 @@ package com.scaler.blogapi.articles;
 
 import com.scaler.blogapi.commons.BaseEntity;
 import com.scaler.blogapi.users.UserEntity;
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "articles")
